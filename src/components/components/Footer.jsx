@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
 import FooterItem from './FooterItem';
 import SocialNetworkIcon from './SocialNetworkIcon';
 
-// eslint-disable-next-line react/prop-types
-export default function Footer({ changePage }) {
+function Footer({ changePage }) {
   return (
     <footer>
       <ul className="nav justify-content-center border-bottom mb-3 mt-5">
@@ -30,3 +30,9 @@ export default function Footer({ changePage }) {
     </footer>
   );
 }
+
+Footer.propTypes = {
+  changePage: PropTypes.func.isRequired,
+};
+
+export default Footer;

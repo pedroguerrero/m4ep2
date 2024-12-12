@@ -1,4 +1,11 @@
-// eslint-disable-next-line react/prop-types
-export default function Container({ children, ...props }) {
+import PropTypes from 'prop-types';
+
+function Container({ children, ...props }) {
   return <div {...props}>{children}</div>;
 }
+
+Container.propTypes = {
+  children: PropTypes.node,
+};
+
+export default Container;

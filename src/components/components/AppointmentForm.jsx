@@ -1,36 +1,43 @@
-/* eslint-disable react/prop-types */
+import { useRef } from 'react';
+import PropTypes from 'prop-types';
 import Button from './Button';
 import Container from './Container';
 
-export default function AppointmentForm({
-  setPatientAttribute,
-  patient,
-  doctors,
-  onSubmit,
-}) {
+function AppointmentForm({ setPatientAttribute, patient, doctors, onSubmit }) {
+  const refs = {
+    name: useRef(null),
+    date: useRef(null),
+    doctor: useRef(null),
+    price: useRef(null),
+  };
+
+  const focus = (name) => {
+    name in refs && refs[name].current.focus();
+  };
+
   return (
     <form onSubmit={onSubmit}>
       <Container className="mb-3">
-        <label htmlFor="nombre" className="form-label">
+        <label className="form-label" onClick={() => focus('name')}>
           Nombre
         </label>
         <input
-          id="nombre"
           className="form-control"
           placeholder="Nombre"
           onChange={(event) =>
             setPatientAttribute('name', event.target.value.trim())
           }
+          ref={refs.name}
           value={patient.name}
         />
       </Container>
 
       <Container className="mb-3">
-        <label htmlFor="fecha" className="form-label">
+        <label className="form-label" onClick={() => focus('date')}>
           Fecha
         </label>
         <input
-          id="fecha"
+          ref={refs.date}
           className="form-control"
           placeholder="Fecha"
           type="date"
@@ -40,13 +47,13 @@ export default function AppointmentForm({
       </Container>
 
       <Container className="mb-3">
-        <label htmlFor="doctor" className="form-label">
+        <label className="form-label" onClick={() => focus('doctor')}>
           Doctor
         </label>
         <select
+          ref={refs.doctor}
           value={patient.doctorId}
           className="form-select"
-          id="doctor"
           onChange={(event) => {
             const doctorId = Number(event.target.value);
             const { name } = doctors.find((doctor) => doctor.id === doctorId);
@@ -66,11 +73,11 @@ export default function AppointmentForm({
       </Container>
 
       <Container className="mb-3">
-        <label htmlFor="valor" className="form-label">
+        <label className="form-label" onClick={() => focus('price')}>
           Valor Consulta
         </label>
         <input
-          id="valor"
+          ref={refs.price}
           className="form-control"
           placeholder="10000"
           type="number"
@@ -89,3 +96,12 @@ export default function AppointmentForm({
     </form>
   );
 }
+
+AppointmentForm.propTypes = {
+  setPatientAttribute: PropTypes.func.isRequired,
+  patient: PropTypes.object.isRequired,
+  doctors: PropTypes.array.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
+
+export default AppointmentForm;

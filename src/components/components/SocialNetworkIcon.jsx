@@ -1,5 +1,6 @@
-// eslint-disable-next-line react/prop-types
-export default function SocialNetworkIcon({ icon, ...props }) {
+import PropTypes from 'prop-types';
+
+function SocialNetworkIcon({ icon, ...props }) {
   return (
     <li {...props}>
       <a
@@ -13,3 +14,9 @@ export default function SocialNetworkIcon({ icon, ...props }) {
     </li>
   );
 }
+
+SocialNetworkIcon.propTypes = {
+  icon: PropTypes.string.isRequired,
+};
+
+export default SocialNetworkIcon;

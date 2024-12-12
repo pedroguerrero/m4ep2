@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import Container from './Container';
 
-// eslint-disable-next-line react/prop-types
-export default function Loading({ text, size }) {
+function Loading({ text, size }) {
   return (
     <Container className="text-center">
       <Container
@@ -14,3 +14,10 @@ export default function Loading({ text, size }) {
     </Container>
   );
 }
+
+Loading.propTypes = {
+  text: PropTypes.string,
+  size: PropTypes.string,
+};
+
+export default Loading;

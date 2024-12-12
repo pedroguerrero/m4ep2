@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import Row from './Row';
 import ServiceItem from './ServiceItem';
 
-export default function ServiceList({ services }) {
+function ServiceList({ services }) {
   return (
     <Row>
       {services.map((service, index) => (
@@ -11,3 +11,15 @@ export default function ServiceList({ services }) {
     </Row>
   );
 }
+
+ServiceList.propTypes = {
+  services: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+    })
+  ),
+};
+
+export default ServiceList;

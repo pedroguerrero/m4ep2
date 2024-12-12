@@ -1,5 +1,6 @@
-// eslint-disable-next-line react/prop-types
-export default function FooterItem({ changePage, page, name }) {
+import PropTypes from 'prop-types';
+
+function FooterItem({ changePage, page, name }) {
   return (
     <li className="nav-item">
       <a
@@ -12,3 +13,11 @@ export default function FooterItem({ changePage, page, name }) {
     </li>
   );
 }
+
+FooterItem.propTypes = {
+  changePage: PropTypes.func.isRequired,
+  page: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
+export default FooterItem;

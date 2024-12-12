@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
 import Button from './Button';
 import Container from './Container';
 
-/* eslint-disable react/prop-types */
-export default function Modal({ title, children, showModal, onClose }) {
+function Modal({ title, children, showModal, onClose }) {
   return (
     <Container
       className="modal fade show"
@@ -32,3 +32,12 @@ export default function Modal({ title, children, showModal, onClose }) {
     </Container>
   );
 }
+
+Modal.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node,
+  showModal: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
+
+export default Modal;

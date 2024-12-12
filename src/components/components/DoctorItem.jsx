@@ -1,14 +1,8 @@
+import PropTypes from 'prop-types';
 import Image from './Image';
 import Container from './Container';
 
-/* eslint-disable react/prop-types */
-export default function DoctorItem({
-  img,
-  name,
-  specialty,
-  experience,
-  description,
-}) {
+function DoctorItem({ img, name, specialty, experience, description }) {
   return (
     <Container className="col-md-3 mb-5">
       <Container className="card text-center">
@@ -27,3 +21,13 @@ export default function DoctorItem({
     </Container>
   );
 }
+
+DoctorItem.propTypes = {
+  img: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  specialty: PropTypes.string.isRequired,
+  experience: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+};
+
+export default DoctorItem;

@@ -1,4 +1,11 @@
-// eslint-disable-next-line react/prop-types
-export default function Header({ children }) {
+import PropTypes from 'prop-types';
+
+function Header({ children }) {
   return <header>{children}</header>;
 }
+
+Header.propTypes = {
+  children: PropTypes.node,
+};
+
+export default Header;
