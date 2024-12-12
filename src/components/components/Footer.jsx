@@ -1,23 +1,19 @@
-import PropTypes from 'prop-types';
+import { NavLink } from 'react-router';
+import { navPages } from '../utils/nav';
 import FooterItem from './FooterItem';
 import SocialNetworkIcon from './SocialNetworkIcon';
 
-function Footer({ changePage }) {
+function Footer() {
   return (
     <footer>
       <ul className="nav justify-content-center border-bottom mb-3 mt-5">
-        <FooterItem changePage={changePage} page="index" name="Inicio" />
-        <FooterItem
-          changePage={changePage}
-          page="equipo-medico"
-          name="Equipo médico"
-        />
-        <FooterItem
-          changePage={changePage}
-          page="citas-pacientes"
-          name="Citas Pacientes"
-        />
-        <FooterItem changePage={changePage} page="contacto" name="Contacto" />
+        {navPages.map(({ path, name }) => (
+          <FooterItem key={path}>
+            <NavLink to={path} className="nav-link px-2 text-body-secondary">
+              {name}
+            </NavLink>
+          </FooterItem>
+        ))}
       </ul>
 
       <ul className="nav justify-content-center list-unstyled p-3 d-flex">
@@ -30,9 +26,5 @@ function Footer({ changePage }) {
     </footer>
   );
 }
-
-Footer.propTypes = {
-  changePage: PropTypes.func.isRequired,
-};
 
 export default Footer;
