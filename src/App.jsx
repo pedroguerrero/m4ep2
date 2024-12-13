@@ -7,10 +7,12 @@ import Header from './components/components/Header';
 import NavBar from './components/components/NavBar';
 import Footer from './components/components/Footer';
 import Button from './components/components/Button';
+import { DoctorsContext } from './store/DoctorsContext';
 import Container from './components/components/Container';
 
 function App() {
   const [showNav, setShowNav] = useState(false);
+  const [doctors, setDoctors] = useState([]);
 
   return (
     <>
@@ -59,11 +61,13 @@ function App() {
         </NavBar>
       </Header>
 
-      <Routes>
-        {navPages.map(({ path, component }) => (
-          <Route key={path} path={path} element={component} />
-        ))}
-      </Routes>
+      <DoctorsContext.Provider value={{ doctors, setDoctors }}>
+        <Routes>
+          {navPages.map(({ path, component }) => (
+            <Route key={path} path={path} element={component} />
+          ))}
+        </Routes>
+      </DoctorsContext.Provider>
 
       <Footer />
     </>

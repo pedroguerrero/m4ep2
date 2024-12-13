@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import background from '../../assets/bg.jpg';
 import Row from '../components/Row';
 import Modal from '../components/Modal';
 import Button from '../components/Button';
 import { getDoctors } from '../utils/doctor';
 import Container from '../components/Container';
+import { DoctorsContext } from '../../store/DoctorsContext';
 import AppointmentForm from '../components/AppointmentForm';
 
 export default function PatientsPage() {
@@ -16,7 +17,7 @@ export default function PatientsPage() {
     price: 0,
   });
   const [patients, setPatients] = useState([]);
-  const [doctors, setDoctors] = useState([]);
+  const { doctors, setDoctors } = useContext(DoctorsContext);
   const [showModal, setShowModal] = useState(false);
   const setPatientAttribute = (attribute, value) => {
     setPatient((patient) => ({
@@ -26,10 +27,14 @@ export default function PatientsPage() {
   };
 
   useEffect(() => {
+    if (doctors.length) {
+      return;
+    }
+
     getDoctors()
       .then((doctors) => setDoctors(doctors))
       .catch(() => alert('Error al obtener los medicos'));
-  }, []);
+  }, [doctors.length, setDoctors]);
 
   return (
     <>

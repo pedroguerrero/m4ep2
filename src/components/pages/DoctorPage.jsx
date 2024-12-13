@@ -1,23 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import background from '../../assets/bg-2.jpg';
 import { getDoctors } from '../utils/doctor';
 import Row from '../components/Row';
 import Loading from '../components/Loading';
 import Container from '../components/Container';
 import DoctorList from '../components/DoctorList';
+import { DoctorsContext } from '../../store/DoctorsContext';
 
 export default function DoctorPage() {
-  const [doctors, setDoctors] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { doctors, setDoctors } = useContext(DoctorsContext);
 
   useEffect(() => {
+    if (doctors.length) {
+      setIsLoading(false);
+      return;
+    }
+
     getDoctors()
-      .then((doctors) => {
-        setDoctors(doctors);
+      .then((data) => {
+        setDoctors(data);
         setIsLoading(false);
       })
       .catch(() => alert('Error al obtener los medicos'));
-  }, []);
+  }, [doctors.length, setDoctors]);
 
   return (
     <main>
