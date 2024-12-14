@@ -13,6 +13,8 @@ import Container from './components/components/Container';
 function App() {
   const [showNav, setShowNav] = useState(false);
   const [doctors, setDoctors] = useState([]);
+  const [doctor, setDoctor] = useState({});
+  const [showModalDoctor, setShowModalDoctor] = useState(false);
 
   return (
     <>
@@ -61,7 +63,16 @@ function App() {
         </NavBar>
       </Header>
 
-      <DoctorsContext.Provider value={{ doctors, setDoctors }}>
+      <DoctorsContext.Provider
+        value={{
+          doctors,
+          setDoctors,
+          doctor,
+          setDoctor,
+          showModalDoctor,
+          setShowModalDoctor,
+        }}
+      >
         <Routes>
           {navPages.map(({ path, component }) => (
             <Route key={path} path={path} element={component} />
