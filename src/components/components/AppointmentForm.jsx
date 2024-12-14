@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
+import HocInput from './HocInput';
 import Container from './Container';
 
 function AppointmentForm({ setPatientAttribute, patient, doctors, onSubmit }) {
@@ -14,6 +15,7 @@ function AppointmentForm({ setPatientAttribute, patient, doctors, onSubmit }) {
   const focus = (name) => {
     name in refs && refs[name].current.focus();
   };
+  const CustomInput = HocInput('input');
 
   return (
     <form onSubmit={onSubmit}>
@@ -21,7 +23,7 @@ function AppointmentForm({ setPatientAttribute, patient, doctors, onSubmit }) {
         <label className="form-label" onClick={() => focus('name')}>
           Nombre
         </label>
-        <input
+        <CustomInput
           className="form-control"
           placeholder="Nombre"
           onChange={(event) =>
