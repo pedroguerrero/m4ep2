@@ -5,7 +5,7 @@ import Image from './Image';
 import Button from './Button';
 import Container from './Container';
 
-function DoctorItem({ img, name, specialty, experience, description }) {
+function DoctorCard({ img, name, specialty, experience, description }) {
   const { setDoctor, setShowModalDoctor } = useContext(DoctorsContext);
 
   return (
@@ -37,7 +37,7 @@ function DoctorItem({ img, name, specialty, experience, description }) {
   );
 }
 
-DoctorItem.propTypes = {
+DoctorCard.propTypes = {
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   specialty: PropTypes.string.isRequired,
@@ -45,4 +45,4 @@ DoctorItem.propTypes = {
   description: PropTypes.string.isRequired,
 };
 
-export default DoctorItem;
+export default DoctorCard;

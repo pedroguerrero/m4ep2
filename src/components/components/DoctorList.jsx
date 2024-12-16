@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import Row from './Row';
-import DoctorItem from './DoctorItem';
+import DoctorCard from './DoctorCard';
 
 function DoctorList({ doctors }) {
   return (
     <Row>
       {doctors.map((doctor) => (
-        <DoctorItem key={doctor.id} {...doctor} />
+        <DoctorCard key={doctor.id} {...doctor} />
       ))}
     </Row>
   );
